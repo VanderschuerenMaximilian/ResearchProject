@@ -1,15 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { CreateKataInput } from './dto/create-kata.input';
 import { UpdateKataInput } from './dto/update-kata.input';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Kata } from './entities/kata.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class KatasService {
-  create(createKataInput: CreateKataInput) {
-    return 'This action adds a new kata';
+  constructor(
+  @InjectRepository(Kata)
+  private readonly kataRepository: Repository<Kata>,
+) {}
+
+  create(createKataInput: CreateKataInput): Promise<Kata> {
+    const k = new Kata();
+    k.name = createKataInput.name;
+    k.description = createKataInput.description;
+    
+    return this.kataRepository.save(k);
   }
 
   findAll() {
-    return `This action returns all katas`;
+    return this.kataRepository.find();
   }
 
   findOne(id: number) {

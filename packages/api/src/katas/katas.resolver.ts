@@ -9,24 +9,13 @@ export class KatasResolver {
   constructor(private readonly katasService: KatasService) {}
 
   @Mutation(() => Kata)
-  createKata(@Args('createKataInput') createKataInput: CreateKataInput) {
+  createKata(@Args('createKataInput') createKataInput: CreateKataInput): Promise<Kata> {
     return this.katasService.create(createKataInput);
   }
 
   @Query(() => [Kata], { name: 'katas' })
   findAll() {
-    // return this.katasService.findAll();
-    return [
-      {
-        id: 1,
-        name: 'Kata 1',
-        description: 'Description 1',
-        code: 'Code 1',
-        test: 'Test 1',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }
-    ]
+    return this.katasService.findAll();
   }
 
   @Query(() => Kata, { name: 'kata' })

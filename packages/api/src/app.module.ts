@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { KatasModule } from './katas/katas.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -11,6 +12,16 @@ import { KatasModule } from './katas/katas.module';
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
+
+    TypeOrmModule.forRoot({
+      type: 'mongodb',
+      url: 'mongodb://localhost:27022/api',
+      entities: [__dirname + '/**/*.entity.{js,ts}'],
+      synchronize: true, // Careful with this in production
+      useNewUrlParser: true,
+      useUnifiedTopology: true, // Disable deprecated warnings
+    }),
+
     KatasModule,
   ],
   controllers: [AppController],
