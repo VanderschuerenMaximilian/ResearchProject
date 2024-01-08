@@ -1,0 +1,31 @@
+{
+  "name": "researchproject",
+  "version": "1.0.0",
+  "description": "Reasearch Project",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "workspaces": [
+    "packages/*"
+  ],
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "proseWrap": "preserve",
+    "htmlWhitespaceSensitivity": "css",
+    "endOfLine": "lf"
+  },
+  "homepage": "https://github.com/VanderschuerenMaximilian/ResearchProject",
+  "bugs": {
+    "url": "https://github.com/VanderschuerenMaximilian/ResearchProject/issues"
+  },
+  "author": "Maximilian Vanderschueren",
+  "license": "ISC"
+}
