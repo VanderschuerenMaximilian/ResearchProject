@@ -1,9 +1,15 @@
 <script lang="ts">
   import { Pane, Button } from 'svelte-tweakpane-ui'
   import { Canvas } from '@threlte/core'
-  import Scene from './Scene.svelte'
-  import { buttonIdle, buttonWalk, buttonRun } from './state'
+  import Scene from '$lib/components/Scene.svelte'
+  import { buttonIdle, buttonWalk, buttonRun } from '$lib/composables/state'
 </script>
+
+<svelte:head>
+	<title>Train Kata's</title>
+	<meta name="description" content="Here you can learn kata's" />
+</svelte:head>
+
 <Pane
   title="Transitions"
   position="fixed"
@@ -33,9 +39,14 @@
   </Canvas>
 </div>
 <style>
+  :global(body) {
+    margin: 0;
+  }
+
   div {
-    position: relative;
-    height: 100%;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(13, 19, 32);
+    background: linear-gradient(180deg, rgba(13, 19, 32, 1) 0%, rgba(8, 12, 21, 1) 100%);
   }
 </style>

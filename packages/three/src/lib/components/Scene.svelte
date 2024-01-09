@@ -4,7 +4,6 @@
   import Character from './Character.svelte'
   import * as three from 'three'
   import dojoImg from '$lib/images/dojo_skybox.png'
-  import testSkybox from '$lib/images/test_skybox.jpg'
 
   const loader = new three.TextureLoader()
   const dojo = loader.load(dojoImg)

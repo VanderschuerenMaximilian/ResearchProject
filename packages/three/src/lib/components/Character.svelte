@@ -1,9 +1,10 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
   import { GLTF, useGltfAnimations } from '@threlte/extras'
-  import { buttonIdle, buttonWalk, buttonRun } from './state'
+  import { buttonIdle, buttonWalk, buttonRun } from '../composables/state'
   let currentActionKey = 'idle'
   const { gltf, actions } = useGltfAnimations()
+  console.log(Object.entries(gltf))
   $: $actions[currentActionKey]?.play()
   const unsub1 = buttonIdle.subscribe(() => {
     console.log('transition to idle')
@@ -31,7 +32,6 @@
     currentActionKey = nextActionKey
   }
   onDestroy(() => {
-    // We unsubscribe otherwise we'd have old subscriptions still active
     unsub1()
     unsub2()
     unsub3()
