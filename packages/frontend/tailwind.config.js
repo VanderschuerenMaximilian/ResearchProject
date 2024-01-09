@@ -2,7 +2,12 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        title: ['Metropolis', 'serif'],
+        body: ['IBM Plex Sans', 'sans-serif'],
+      }
+    },
   },
   plugins: [],
 }
