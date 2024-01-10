@@ -39,5 +39,5 @@
 </script>
 <GLTF
   bind:gltf={$gltf}
-  url="https://threejs.org/examples/models/gltf/Xbot.glb"
+  url="src/lib/models/Xbot.glb"
 />

@@ -1,8 +1,10 @@
 <script lang="ts">
   import { Pane, Button } from 'svelte-tweakpane-ui'
   import { Canvas } from '@threlte/core'
+  //@ts-ignore
   import Scene from '$lib/components/Scene.svelte'
   import { buttonIdle, buttonWalk, buttonRun } from '$lib/composables/state'
+  // import Camera from '$lib/components/Camera.svelte';
 </script>
 
 <svelte:head>
@@ -10,6 +12,7 @@
 	<meta name="description" content="Here you can learn kata's" />
 </svelte:head>
 
+<!-- <Camera /> -->
 <Pane
   title="Transitions"
   position="fixed"

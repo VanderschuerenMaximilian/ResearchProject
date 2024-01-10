@@ -30,6 +30,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@tensorflow-models/posenet": "^2.2.2",
+    "@tensorflow/tfjs": "^4.15.0",
     "lucide-svelte": "^0.308.0",
     "svelte-tweakpane-ui": "^1.1.4"
   }
