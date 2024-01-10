@@ -9,7 +9,7 @@ import Header from "$lib/components/Header.svelte";
 
 <div class='font-body w-screen h-screen bg-gray-50 dark:bg-slate-900 text-black dark:text-slate-50'>
   <Header />
-  <div class="space-y-4 max-w-2xl px-36 py-44">
+  <div class="space-y-4 max-w-2xl px-36 pt-44">
     <h1 class="font-title font-bold text-7xl max-w-64">Karate Learn</h1>
     <p class="max-w-md">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi faucibus nec diam et accumsan. Nam condimentum dui a ligula blandit, nec luctus nibh dapibus. Donec ultricies, ante eget volutpat congue, turpis leo bibendum turpis, sagittis malesuada risus libero et nisl. Aliquam erat volutpat. Mauris a arcu quis lectus 

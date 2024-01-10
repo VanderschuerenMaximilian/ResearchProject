@@ -4,7 +4,7 @@
   import { buttonIdle, buttonWalk, buttonRun } from '../composables/state'
   let currentActionKey = 'idle'
   const { gltf, actions } = useGltfAnimations()
-  console.log(Object.entries(gltf))
+  console.log(Object.entries(actions))
   $: $actions[currentActionKey]?.play()
   const unsub1 = buttonIdle.subscribe(() => {
     console.log('transition to idle')
