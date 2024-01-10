@@ -44,7 +44,6 @@
     function drawPose(predictions: posenet.Pose, canvas:any) {
         if(predictions.score > 0){
             const keypoints = predictions.keypoints;
-            // console.log(keypoints)
             $poseKeypoints = keypoints
             keypoints.forEach((point)=>{
                 const x = point.position.x
@@ -60,9 +59,11 @@
     runPosenet();
 </script>
 
-<div class="absolute">
+<div class="absolute overflow-hidden">
     <div class="relative">
-        <video  bind:this={webCam} width="420" height="360"/>
+        <video  bind:this={webCam} width="420" height="360">
+            <track kind="captions" />
+        </video>
         <canvas class="absolute top-0 left-0" bind:this={canvas}></canvas>
     </div>
 </div>

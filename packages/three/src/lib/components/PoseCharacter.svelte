@@ -72,16 +72,16 @@
     $: coordinatesCalc($poseKeypoints)
 
     onMount(async () => {
-        console.log(await gltf)
+        console.log('gltf',await gltf)
         Xbot = await gltf
     })
 
     async function coordinatesCalc(keypoints:any) {
-        console.log(Xbot)
+        console.log(Xbot.nodes.Beta_Surface.skeleton)
         // console.log('Xbot in calcfunction _y before',Xbot.nodes.Beta_Surface.skeleton.bones[5].rotation._y)
         // console.log('keypoints in calcfunction',keypoints)
-        Xbot.nodes.Beta_Surface.skeleton.bones[5].rotation._y = getYRotation(keypoints[1],keypoints[2],keypoints[0])
-        Xbot.nodes.Beta_Surface.skeleton.bones[5].rotation._z = getZRotation(keypoints[1],keypoints[2])
+        Xbot.nodes.Beta_Surface.skeleton.bones[5].rotation.y = getYRotation(keypoints[1],keypoints[2],keypoints[0])
+        Xbot.nodes.Beta_Surface.skeleton.bones[5].rotation.z = getZRotation(keypoints[1],keypoints[2])
         // console.log('Xbot in calcfunction _y after',Xbot.nodes.Beta_Surface.skeleton.bones[5].rotation._y)
     }
 
@@ -93,7 +93,7 @@
         if(p1['score'] > confidence && p2['score'] > confidence && p3['score'] > confidence){
             let e1 = Math.abs(p1['position']['x'] - p3['position']['x'])
             let e2 = Math.abs(p2['position']['x'] - p3['position']['x'])
-            return normalize(-100, 100, e2-e1) - Math.PI/2;
+            return normalize(-60, 60, e2-e1) - Math.PI/2;
         }
         return 0
     }

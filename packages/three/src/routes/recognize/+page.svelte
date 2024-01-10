@@ -47,7 +47,9 @@
 </script>
 
 <div class="w-full min-h-screen flex flex-col justify-center items-center pt-40">
-    <video bind:this={videoElement} width="600" height="480"/>
+    <video bind:this={videoElement} width="600" height="480">
+        <track kind="captions" />
+    </video>
     <button on:click={captureImage} class="mt-6 bg-red-500 hover:bg-red-600 p-4 rounded-md text-slate-50">take a picture</button>
     <canvas id="canvas" class="hidden"></canvas>
 </div>
