@@ -32,7 +32,7 @@
     const apiKey = "48cf32e3-0f46-4cd8-a7e1-5315d115eb4d"
 
     async function getKarateModel (base64Image: string) {
-        const model = await fetch('https://predict.cogniflow.ai/image/object-detection/detect/47804ea1-9044-467d-89f0-f754a59f5371', {
+        const model = await fetch('https://corsproxy.io/?https://predict.cogniflow.ai/image/object-detection/detect/47804ea1-9044-467d-89f0-f754a59f5371', {
               method: 'POST',
               headers: {
                   accept: 'application/json',

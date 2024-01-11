@@ -26,7 +26,7 @@
         net = await posenet.load();
         setInterval(() => {
             detect();
-        }, 100);
+        }, 50);
     }
 
     async function detect() {
@@ -41,6 +41,27 @@
         }
     }
 
+    const edges:any = {
+        0: [0,1],
+        1: [0,2],
+        2: [1,3],
+        3: [2,4],
+        4: [0,5],
+        5: [0,6],
+        6: [5,7],
+        7: [7,9],
+        8: [6,8],
+        9: [8,10],
+        10: [5,6],
+        11: [5,11],
+        12: [6,12],
+        13: [11,12],
+        14: [11,13],
+        15: [13,15],
+        16: [12,14],
+        17: [14,16]
+    }
+
     function drawPose(predictions: posenet.Pose, canvas:any) {
         if(predictions.score > 0){
             const keypoints = predictions.keypoints;
@@ -52,7 +73,23 @@
                 canvas.arc(x, y, 5, 0, 3 * Math.PI);
                 canvas.fillStyle = "red";
                 canvas.fill();
+
             })
+
+            for (const edgeIndex in edges) {
+                const [startIdx, endIdx] = edges[edgeIndex];
+                const startX = keypoints[startIdx].position.x;
+                const startY = keypoints[startIdx].position.y;
+                const endX = keypoints[endIdx].position.x;
+                const endY = keypoints[endIdx].position.y;
+
+                canvas.beginPath();
+                canvas.moveTo(startX, startY);
+                canvas.lineTo(endX, endY);
+                canvas.strokeStyle = "yellow";
+                canvas.lineWidth = 2;
+                canvas.stroke();
+            }
         }
     }
 

@@ -28,6 +28,8 @@
   />
 </T.PerspectiveCamera>
 
+<T.AxesHelper/>
+
 <T.DirectionalLight
   intensity={0.8}
   position.x={5}
