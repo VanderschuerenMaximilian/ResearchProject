@@ -17,13 +17,13 @@
         console.log('gltf', Xbot.nodes.Beta_Surface.skeleton)
     })
 
-    setInterval(() => {
-      // console.log(-(($poseKeypoints[9].position.x - $poseKeypoints[5].position.x) / ($poseKeypoints[10].position.x - $poseKeypoints[6].position.x)))
-      // console.log('right shoulder', $poseKeypoints[6].position)
-      // console.log('right elbow', $poseKeypoints[8].position)
+    // setInterval(() => {
+    //   // console.log(-(($poseKeypoints[9].position.x - $poseKeypoints[5].position.x) / ($poseKeypoints[10].position.x - $poseKeypoints[6].position.x)))
+    //   // console.log('right shoulder', $poseKeypoints[6].position)
+    //   // console.log('right elbow', $poseKeypoints[8].position)
 
-      // console.log('right arm from model: ',Xbot.nodes.Beta_Surface.skeleton.bones[34].rotation.y)
-    }, 1000);
+    //   // console.log('right arm from model: ',Xbot.nodes.Beta_Surface.skeleton.bones[34].rotation.y)
+    // }, 1000);
     
     async function coordinatesCalc(keypoints:any) {
         // console.log('keypoints', $poseKeypoints) 

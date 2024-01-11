@@ -26,6 +26,10 @@
             after:block after:content-[''] after:absolute after:h-[3px] after:bg-red-700 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center
             focus:outline-none focus:ring-offset-2 dark:focus:ring-offset-slate-900 focus:ring-2 focus:ring-red-700 dark:ring-red-600 rounded-lg">
             Train</a></li>
+        <li><a href="/learn" class="relative text-lg w-fit block 
+            after:block after:content-[''] after:absolute after:h-[3px] after:bg-red-700 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center
+            focus:outline-none focus:ring-offset-2 dark:focus:ring-offset-slate-900 focus:ring-2 focus:ring-red-700 dark:ring-red-600 rounded-lg">
+            Learn</a></li>
         <button 
             on:click={toggleDarkMode}
             title="Darkmode toggle"
