@@ -19,10 +19,10 @@
             webCam.srcObject = stream
             webCam.play()
             if (webCam !== undefined) sendWebcamData()
-            // setInterval(() => {
-            //     // console.log('webCam', webCam)   
-            //     sendWebcamData()
-            // }, 500);
+            setInterval(() => {
+                // console.log('webCam', webCam)   
+                sendWebcamData()
+            }, 3000);
         } catch (error) {
             console.error(error, 'Could not get media stream')
         }
@@ -112,7 +112,7 @@
     async function sendWebcamData() {
         const data = await captureWebcam()
         // console.log('webCam data: ',data)
-        fetch('https://b66d-2001-6a8-2480-6dba-24a5-f42f-8fd7-3a46.ngrok-free.app/webcam', {
+        fetch('https://dbe5-2001-6a8-2480-6dba-24a5-f42f-8fd7-3a46.ngrok-free.app/webcam', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -121,7 +121,7 @@
         }).then(res => console.log(res))
     }
     
-    runPosenet();
+    // runPosenet();
 </script>
 
 <div class="absolute overflow-hidden">

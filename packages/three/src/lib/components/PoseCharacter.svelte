@@ -88,7 +88,7 @@
     function getYRotationSpine (keypoints:any) {
       if(keypoints[1]['score'] > confidence && keypoints[2]['score'] > confidence && keypoints[3]['score'] > confidence){
           let e1 = (keypoints[1]['position']['y'] - keypoints[2]['position']['y'])
-          console.log(Math.round((normalize(-50, 50, e1) - Math.PI/2) * 100) /100)
+          // console.log(Math.round((normalize(-50, 50, e1) - Math.PI/2) * 100) /100)
           return Math.round((normalize(-50, 50, e1) - Math.PI/2) * 100) /100;
       }
       return 0
