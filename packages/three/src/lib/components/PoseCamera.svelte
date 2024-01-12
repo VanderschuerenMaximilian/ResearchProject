@@ -7,6 +7,7 @@
     let webCam: HTMLVideoElement
     let canvas: HTMLCanvasElement
     let net: posenet.PoseNet
+    let base64: string
 
     onMount(async (): Promise<void> => {
         try {
@@ -17,6 +18,11 @@
             
             webCam.srcObject = stream
             webCam.play()
+            if (webCam !== undefined) sendWebcamData()
+            // setInterval(() => {
+            //     // console.log('webCam', webCam)   
+            //     sendWebcamData()
+            // }, 500);
         } catch (error) {
             console.error(error, 'Could not get media stream')
         }
@@ -93,6 +99,28 @@
         }
     }
 
+    async function captureWebcam() {
+        let canvas = document.getElementById('canvas') as HTMLCanvasElement
+            
+        canvas.width = webCam.videoWidth
+        canvas.height = webCam.videoHeight
+        canvas.getContext('2d')?.drawImage(webCam, 0, 0, canvas.width, canvas.height)
+        base64 = canvas.toDataURL()
+        return base64
+    }
+
+    async function sendWebcamData() {
+        const data = await captureWebcam()
+        // console.log('webCam data: ',data)
+        fetch('https://b66d-2001-6a8-2480-6dba-24a5-f42f-8fd7-3a46.ngrok-free.app/webcam', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({data}),
+        }).then(res => console.log(res))
+    }
+    
     runPosenet();
 </script>
 
@@ -103,4 +131,5 @@
         </video>
         <canvas class="absolute top-0 left-0" bind:this={canvas}></canvas>
     </div>
+    <canvas id="canvas" class="hidden"></canvas>
 </div>
