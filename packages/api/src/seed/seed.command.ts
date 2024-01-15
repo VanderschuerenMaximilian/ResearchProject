@@ -26,4 +26,25 @@ export class DatabaseSeedCommand {
         await this.seedService.truncateKatas()
         console.log('done resetting katas')
     }
+
+    @Command({
+        command: 'seed:database:techniques',
+        describe: 'seed the database with techniques',
+    })
+    async seedTechniques() {
+        console.log('seeding techniques...')
+        await this.seedService.truncateTechniques()
+        const techniques = await this.seedService.addTechniquesFromJSON()
+        console.log(`done seeding ${techniques.length} technique(s)`)
+    }
+
+    @Command({
+        command: 'seed:reset:techniques',
+        describe: 'reset the database with techniques',
+    })
+    async deleteTechniques() {
+        console.log('resetting techniques...')
+        await this.seedService.truncateTechniques()
+        console.log('done resetting techniques')
+    }
 }

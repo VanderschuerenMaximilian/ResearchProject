@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Oi tsuki",
+        "description": "Straight punch",
+        "image": "http://budocentrumhetgroenehart.nl/sites/default/files/oitsuki.gif"
+    },
+    {
+        "name": "Gedan barai",
+        "description": "Downward block",
+        "image": "http://budocentrumhetgroenehart.nl/sites/default/files/gedanbarai.gif"
+    },
+    {
+        "name": "Tetsui",
+        "description": "Hammerfist",
+        "image": "hhttps://1.bp.blogspot.com/-taqqRBbzuxA/TWtUDf-i5JI/AAAAAAAAAno/ndhWEVu8ffk/s1600/T5.jpg"
+    },
+    {
+        "name": "Age uke",
+        "description": "Rising block",
+        "image": "https://images2.imgbox.com/08/8e/N9TD7OMO_o.png"
+    },
+    {
+        "name": "Shuto uke",
+        "description": "Knifehand block",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXxeNzwCGOGK0hXmBaPIG_KP_cO1c7LE-4RSTS17Uf6xLfENH8dxrkiFqeDt5O_6S6v_8&usqp=CAU"
+    }
+]

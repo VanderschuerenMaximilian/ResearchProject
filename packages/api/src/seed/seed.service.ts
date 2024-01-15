@@ -3,12 +3,17 @@ import { Injectable } from '@nestjs/common';
 import { KatasService } from '../katas/katas.service';
 import { Kata } from 'src/katas/entities/kata.entity';
 import * as katas from './data/katas.json'
+// techniques
+import { TechniquesService } from '../techniques/techniques.service';
+import { Technique } from 'src/techniques/entities/technique.entity';
+import * as techniques from './data/techniques.json'
 
 
 @Injectable()
 export class SeedService {
     constructor(
         private katasService: KatasService,
+        private techniquesService: TechniquesService,
     ) {}
 
     async addKatasFromJSON() {
@@ -29,5 +34,26 @@ export class SeedService {
 
     async truncateKatas() {
         return this.katasService.clearKatas()
+    }
+
+    async addTechniquesFromJSON() {
+        let theTechniques = []
+        
+        for (let technique of techniques) {
+            const t = new Technique()
+            t.name = technique.name
+            t.description = technique.description
+            t.image = technique.image
+            t.createdAt = new Date()
+            t.updatedAt = new Date()
+            
+            theTechniques.push(t)
+        }
+
+        return this.techniquesService.saveTechniques(theTechniques)
+    }
+
+    async truncateTechniques() {
+        return this.techniquesService.clearTechniques()
     }
 }

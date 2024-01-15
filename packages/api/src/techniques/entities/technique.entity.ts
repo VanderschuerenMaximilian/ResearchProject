@@ -1,9 +1,9 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Column, CreateDateColumn, Entity, ObjectIdColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
-@ObjectType({ description: 'Kata model'})
-export class Kata {
+@ObjectType({description: 'Technique model'})
+export class Technique {
   @ObjectIdColumn()
   @Field(() => ID)
   id: string;
@@ -18,7 +18,7 @@ export class Kata {
 
   @Column()
   @Field(() => String, { nullable: true })
-  code: string;
+  image: string;
 
   @CreateDateColumn({ type: 'timestamp', nullable: true })
   @Field(() => Date)

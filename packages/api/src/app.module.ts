@@ -6,6 +6,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { KatasModule } from './katas/katas.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SeedModule } from './seed/seed.module';
+import { TechniquesModule } from './techniques/techniques.module';
 
 @Module({
   imports: [
@@ -26,6 +27,8 @@ import { SeedModule } from './seed/seed.module';
     KatasModule,
 
     SeedModule,
+
+    TechniquesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

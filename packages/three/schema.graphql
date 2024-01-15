@@ -3,6 +3,11 @@ input CreateKataInput {
   name: String!
 }
 
+input CreateTechniqueInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -20,17 +25,38 @@ type Kata {
 
 type Mutation {
   createKata(createKataInput: CreateKataInput!): Kata!
+  createTechnique(createTechniqueInput: CreateTechniqueInput!): Technique!
   removeKata(id: Int!): Kata!
+  removeTechnique(id: Int!): Technique!
   updateKata(updateKataInput: UpdateKataInput!): Kata!
+  updateTechnique(updateTechniqueInput: UpdateTechniqueInput!): Technique!
 }
 
 type Query {
   kata(id: Int!): Kata!
   katas: [Kata!]!
+  technique(id: String!): Technique!
+  techniques: [Technique!]!
+}
+
+"""Technique model"""
+type Technique {
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  image: String
+  name: String!
+  updatedAt: DateTime!
 }
 
 input UpdateKataInput {
   description: String
   id: Int!
   name: String
+}
+
+input UpdateTechniqueInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
