@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { KatasModule } from './katas/katas.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -23,6 +24,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
 
     KatasModule,
+
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],
