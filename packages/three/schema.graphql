@@ -1,0 +1,36 @@
+input CreateKataInput {
+  description: String!
+  name: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""Kata model"""
+type Kata {
+  code: String
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type Mutation {
+  createKata(createKataInput: CreateKataInput!): Kata!
+  removeKata(id: Int!): Kata!
+  updateKata(updateKataInput: UpdateKataInput!): Kata!
+}
+
+type Query {
+  kata(id: Int!): Kata!
+  katas: [Kata!]!
+}
+
+input UpdateKataInput {
+  description: String
+  id: Int!
+  name: String
+}

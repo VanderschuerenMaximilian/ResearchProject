@@ -1,5 +1,12 @@
 <script lang="ts">
 import Header from "$lib/components/Header.svelte";
+import type { PageData } from "$houdini"
+export let data: PageData
+export let katas: any
+
+$: ({ Katas } = data)
+$: katas = $Katas.data.katas || []
+
 </script>
 
 <svelte:head>
@@ -18,4 +25,9 @@ import Header from "$lib/components/Header.svelte";
       class="bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700 transform transition-colors duration-200 px-6 py-4 rounded-lg text-slate-50
       text-lg font-title shadow-lg">Learn now</a></div>
   </div>
+  {#if katas}
+    {#each katas as kata (kata.id)}
+        <p>{kata.name}</p>
+    {/each}
+  {/if}
 </div>
