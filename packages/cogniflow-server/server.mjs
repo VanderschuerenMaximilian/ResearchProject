@@ -8,6 +8,7 @@ app.use(cors())
 app.use(express.raw({ type: '*/*', limit: '10mb' }))
 
 let counter = 0
+let webcamImage
 
 app.get('/', (req, res) => {
   res.send('Welcome to my server!')
@@ -51,8 +52,6 @@ async function loadModel(base64Code) {
     console.error('error', e)
   }
 }
-
-let webcamImage
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
