@@ -39,5 +39,5 @@
 </script>
 <GLTF
   bind:gltf={$gltf}
-  url="src/lib/models/Xbot.glb"
+  url="src/lib/models/Ethan.glb"
 />

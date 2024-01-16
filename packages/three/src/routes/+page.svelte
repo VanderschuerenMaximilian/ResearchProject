@@ -3,10 +3,8 @@ import Header from "$lib/components/Header.svelte";
 import type { PageData } from "$houdini"
 export let data: PageData
 export let katas: any
-
 $: ({ Katas } = data)
 $: katas = $Katas.data.katas || []
-
 </script>
 
 <svelte:head>

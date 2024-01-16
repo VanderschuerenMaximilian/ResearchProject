@@ -35,7 +35,7 @@ type Mutation {
 type Query {
   kata(id: Int!): Kata!
   katas: [Kata!]!
-  technique(id: String!): Technique!
+  technique(id: ID!): Technique!
   techniques: [Technique!]!
 }
 

@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ID } from '@nestjs/graphql';
 import { TechniquesService } from './techniques.service';
 import { Technique } from './entities/technique.entity';
 import { CreateTechniqueInput } from './dto/create-technique.input';
@@ -19,7 +19,7 @@ export class TechniquesResolver {
   }
 
   @Query(() => Technique, { name: 'technique' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  findOne(@Args('id', { type: () => ID }) id: string) {
     return this.techniquesService.findOne(id);
   }
 

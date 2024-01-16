@@ -3,7 +3,7 @@
   import { Canvas } from '@threlte/core'
   //@ts-ignore
   import Scene from '$lib/components/Scene.svelte'
-  import { buttonIdle, buttonWalk, buttonRun } from '$lib/composables/state'
+  import { buttonStance, buttonAgeUke, buttonOiTsuki, buttonGedanBarai, buttonTetsui } from '$lib/composables/state'
   // import Camera from '$lib/components/Camera.svelte';
 </script>
 
@@ -18,21 +18,33 @@
   position="fixed"
 >
   <Button
-    title="Idle"
+    title="Stance"
     on:click={() => {
-      $buttonIdle = !$buttonIdle
+      $buttonStance = !$buttonStance
     }}
   />
   <Button
-    title="Walk"
+    title="Age uke"
     on:click={() => {
-      $buttonWalk = !$buttonWalk
+      $buttonAgeUke = !$buttonAgeUke
     }}
   />
   <Button
-    title="Run"
+    title="Oi tsuki"
     on:click={() => {
-      $buttonRun = !$buttonRun
+      $buttonOiTsuki = !$buttonOiTsuki
+    }}
+  />
+  <Button
+    title="Gedan barai"
+    on:click={() => {
+      $buttonGedanBarai = !$buttonGedanBarai
+    }}
+  />
+  <Button
+    title="Tetsui"
+    on:click={() => {
+      $buttonTetsui = !$buttonTetsui
     }}
   />
 </Pane>
