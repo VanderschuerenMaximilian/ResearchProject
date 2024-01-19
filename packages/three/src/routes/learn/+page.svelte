@@ -1,10 +1,8 @@
 <script lang="ts">
   import { Pane, Button } from 'svelte-tweakpane-ui'
   import { Canvas } from '@threlte/core'
-  //@ts-ignore
   import Scene from '$lib/components/Scene.svelte'
-  import { buttonStance, buttonAgeUke, buttonOiTsuki, buttonGedanBarai, buttonTetsui } from '$lib/composables/state'
-  // import Camera from '$lib/components/Camera.svelte';
+  import { buttonIdle, buttonWalk, buttonRun ,buttonStance, buttonAgeUke, buttonOiTsuki, buttonGedanBarai, buttonTetsui, buttonShutoUke } from '$lib/composables/state'
 </script>
 
 <svelte:head>
@@ -12,7 +10,6 @@
 	<meta name="description" content="Here you can learn kata's" />
 </svelte:head>
 
-<!-- <Camera /> -->
 <Pane
   title="Transitions"
   position="fixed"
@@ -45,6 +42,30 @@
     title="Tetsui"
     on:click={() => {
       $buttonTetsui = !$buttonTetsui
+    }}
+  />
+  <Button
+    title="Shuto uke"
+    on:click={() => {
+      $buttonShutoUke = !$buttonShutoUke
+    }}
+  />
+  <Button
+    title="Idle"
+    on:click={() => {
+      $buttonIdle = !$buttonIdle
+    }}
+  />
+  <Button
+    title="Walk"
+    on:click={() => {
+      $buttonWalk = !$buttonWalk
+    }}
+  />
+  <Button
+    title="Run"
+    on:click={() => {
+      $buttonRun = !$buttonRun
     }}
   />
 </Pane>

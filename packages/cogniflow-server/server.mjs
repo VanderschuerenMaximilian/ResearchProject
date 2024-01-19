@@ -20,9 +20,10 @@ app.post('/webcam', async (req, res) => {
   console.log('cogniflow response', response)
   const buffer = Buffer.from(base64Image, 'base64')
   if (counter < 10) {
-      counter++
-      fs.writeFileSync(`webcam${counter}.jpg`, buffer)
-  }
+    // counter++
+    // fs.writeFileSync(`webcam${counter}.jpg`, buffer)
+    fs.writeFileSync(`webcam.jpg`, buffer)
+  } 
   webcamImage = buffer
   // console.log(webcamImage)
   res.status(200).send({'technique': response})
@@ -31,7 +32,7 @@ app.post('/webcam', async (req, res) => {
 async function loadModel(base64Code) {
   try {
     const response = await fetch(
-      'https://predict.cogniflow.ai/image/object-detection/detect/47804ea1-9044-467d-89f0-f754a59f5371',
+      'https://predict.cogniflow.ai/image/object-detection/detect/6a60d7f8-057f-4847-b881-a2289ced144a',
       {
         method: 'POST',
         headers: {

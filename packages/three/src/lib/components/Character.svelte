@@ -23,6 +23,7 @@
     const nextAction = $actions[nextActionKey]
     if (!nextAction || currentAction === nextAction) return
     // Function inspired by: https://github.com/mrdoob/three.js/blob/master/examples/webgl_animation_skinning_blending.html
+    console.log(nextAction)
     nextAction.enabled = true
     if (currentAction) {
       currentAction.crossFadeTo(nextAction, duration, true)
@@ -39,5 +40,5 @@
 </script>
 <GLTF
   bind:gltf={$gltf}
-  url="src/lib/models/Ethan.glb"
+  url="static/the_Xbot.glb"
 />

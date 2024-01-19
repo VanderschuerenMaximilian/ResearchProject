@@ -3,6 +3,7 @@
   import { ContactShadows, Float, Grid, OrbitControls } from '@threlte/extras'
   import Character from './Character.svelte'
   import Ethan from './Ethan.svelte'
+  import Ethan2 from './Ethan2.svelte'
   import * as three from 'three'
   import dojoImg from '$lib/images/dojo_skybox.png'
 
@@ -51,8 +52,9 @@
   far={2.5}
   opacity={0.7}
 />
-<!-- <Character /> -->
-<Ethan />
+<Character />
+<!-- <Ethan /> -->
+<!-- <Ethan2 />   -->
 
 <T.Mesh geometry={skybox} material={new three.MeshBasicMaterial({ map: dojo })} />
 
