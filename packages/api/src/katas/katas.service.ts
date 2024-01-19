@@ -35,4 +35,14 @@ export class KatasService {
   remove(id: number) {
     return `This action removes a #${id} kata`;
   }
+
+  // for seeding
+
+  saveKatas(katas: Kata[]): Promise<Kata[]> {
+    return this.kataRepository.save(katas);
+  }
+
+  clearKatas(): Promise<void> {
+    return this.kataRepository.clear();
+  }
 }

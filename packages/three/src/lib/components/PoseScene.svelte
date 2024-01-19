@@ -1,9 +1,7 @@
 <script lang="ts">
   import { T } from '@threlte/core'
   import { ContactShadows, Float, Grid, OrbitControls } from '@threlte/extras'
-  import Character from './Character.svelte'
-  import Ethan from './Ethan.svelte'
-  import Ethan2 from './Ethan2.svelte'
+  import PoseCharacter from './PoseCharacter.svelte';
   import * as three from 'three'
   import dojoImg from '$lib/images/dojo_skybox.png'
 
@@ -28,13 +26,6 @@
     target.y={0.9}
     maxPolarAngle={Math.PI / 2}
   />
-  <!-- <OrbitControls
-    enableZoom={true}
-    enableDamping
-    dampingFactor={0.1}
-    target.y={0.9}
-    maxPolarAngle={Math.PI / 2}
-  /> -->
 </T.PerspectiveCamera>
 
 <T.AxesHelper/>
@@ -52,9 +43,8 @@
   far={2.5}
   opacity={0.7}
 />
-<Character />
-<!-- <Ethan /> -->
-<!-- <Ethan2 />   -->
+
+<PoseCharacter />
 
 <T.Mesh geometry={skybox} material={new three.MeshBasicMaterial({ map: dojo })} />
 

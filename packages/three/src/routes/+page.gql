@@ -1,0 +1,9 @@
+query Katas {
+  katas {
+    __typename
+    id
+    name
+    code
+    description
+  }
+}

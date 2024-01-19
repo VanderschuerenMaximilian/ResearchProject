@@ -1,0 +1,5 @@
+.\brain\Scripts\activate
+
+jupyter notebook
+
+label-studio

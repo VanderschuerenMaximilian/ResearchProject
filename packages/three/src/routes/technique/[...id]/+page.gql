@@ -1,0 +1,9 @@
+query Techniquee ($id: ID!) {
+  technique(id: $id) {
+    __typename
+    id
+    name
+    description
+    image
+  }
+}
