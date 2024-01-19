@@ -14,15 +14,21 @@
   })
   const unsub2 = buttonWalk.subscribe(() => {
     console.log('transition to run')
-    transitionTo('walk', 0.3)
-    transitionTo('idle', 0.3)
+      transitionTo('walk', 0.3)
+      setTimeout(() => {
+        transitionTo('idle', 0.3)
+      }, 1500);
   })
   const unsub3 = buttonRun.subscribe(() => {
     console.log('transition to run')
     transitionTo('run', 0.3)
+    setTimeout(() => {
+      transitionTo('idle', 0.3)
+    }, 1500);
   })
   function transitionTo(nextActionKey: string, duration = 1) {
     const currentAction = $actions[currentActionKey]
+    console.log(currentAction, currentActionKey)
     const nextAction = $actions[nextActionKey]
     if (!nextAction || currentAction === nextAction) return
     // Function inspired by: https://github.com/mrdoob/three.js/blob/master/examples/webgl_animation_skinning_blending.html
@@ -33,10 +39,10 @@
     }
     // Not sure why I need this but the source code does not
     nextAction.play()
-    startAudio = true
+    if (nextActionKey != 'idle') startAudio = true
     currentActionKey = nextActionKey
     setTimeout(() => {
-      startAudio = false  
+      if (currentActionKey == 'idle') startAudio = false  
     }, 1500);
   }
   onDestroy(() => {
