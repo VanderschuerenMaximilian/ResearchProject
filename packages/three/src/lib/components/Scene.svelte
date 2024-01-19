@@ -1,6 +1,6 @@
 <script lang="ts">
   import { T } from '@threlte/core'
-  import { ContactShadows, Float, Grid, OrbitControls } from '@threlte/extras'
+  import { ContactShadows, Float, Grid, OrbitControls, AudioListener } from '@threlte/extras'
   import Character from './Character.svelte'
   import Ethan from './Ethan.svelte'
   import Ethan2 from './Ethan2.svelte'
@@ -35,6 +35,7 @@
     target.y={0.9}
     maxPolarAngle={Math.PI / 2}
   /> -->
+  <AudioListener />
 </T.PerspectiveCamera>
 
 <T.AxesHelper/>

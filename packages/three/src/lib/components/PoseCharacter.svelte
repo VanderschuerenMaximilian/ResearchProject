@@ -6,7 +6,7 @@
   import { onMount } from 'svelte'
   export const ref = new Group()
   const confidence = 0.8
-  const gltf = useGltf('static/the_Xbot.glb')
+  const gltf = useGltf('the_Xbot.glb')
   const component = forwardEventHandlers()
   let Xbot:any
 

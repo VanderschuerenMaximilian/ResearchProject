@@ -1,7 +1,9 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
-  import { GLTF, useGltfAnimations } from '@threlte/extras'
+  import { T } from '@threlte/core'
+  import { GLTF, useGltfAnimations, PositionalAudio } from '@threlte/extras'
   import { buttonIdle, buttonWalk, buttonRun } from '../composables/state'
+  let startAudio = false
   let currentActionKey = 'idle'
   const { gltf, actions } = useGltfAnimations()
   console.log(Object.entries(actions))
@@ -13,6 +15,7 @@
   const unsub2 = buttonWalk.subscribe(() => {
     console.log('transition to run')
     transitionTo('walk', 0.3)
+    transitionTo('idle', 0.3)
   })
   const unsub3 = buttonRun.subscribe(() => {
     console.log('transition to run')
@@ -30,7 +33,11 @@
     }
     // Not sure why I need this but the source code does not
     nextAction.play()
+    startAudio = true
     currentActionKey = nextActionKey
+    setTimeout(() => {
+      startAudio = false  
+    }, 1500);
   }
   onDestroy(() => {
     unsub1()
@@ -40,5 +47,19 @@
 </script>
 <GLTF
   bind:gltf={$gltf}
-  url="static/the_Xbot.glb"
-/>
+  url="the_Xbot.glb"/>
+
+{#if startAudio}
+  <PositionalAudio
+    src={"shout.mp3"}
+    volume={1}
+    refDistance={1}
+    rolloffFactor={1}
+    autoplay
+    directionalCone={{
+      coneInnerAngle: 90,
+      coneOuterAngle: 220,
+      coneOuterGain: 0.3
+    }}
+  />
+{/if}
