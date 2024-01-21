@@ -3,7 +3,10 @@
   import { T } from '@threlte/core'
   import { GLTF, useGltfAnimations, PositionalAudio } from '@threlte/extras'
   import { buttonIdle, buttonWalk, buttonRun } from '../composables/state'
+  import { volume } from '../composables/audio'
   let startAudio = false
+  let volumePercentage = 0
+  $: volumePercentage = $volume / 50
   let currentActionKey = 'idle'
   const { gltf, actions } = useGltfAnimations()
   console.log(Object.entries(actions))
@@ -58,7 +61,7 @@
 {#if startAudio}
   <PositionalAudio
     src={"shout.mp3"}
-    volume={1}
+    volume={volumePercentage}
     refDistance={1}
     rolloffFactor={1}
     autoplay
