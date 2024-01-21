@@ -9,7 +9,6 @@
   $: volumePercentage = $volume / 50
   let currentActionKey = 'idle'
   const { gltf, actions } = useGltfAnimations()
-  console.log(Object.entries(actions))
   $: $actions[currentActionKey]?.play()
   const unsub1 = buttonIdle.subscribe(() => {
     console.log('transition to idle')
@@ -31,11 +30,9 @@
   })
   function transitionTo(nextActionKey: string, duration = 1) {
     const currentAction = $actions[currentActionKey]
-    console.log(currentAction, currentActionKey)
     const nextAction = $actions[nextActionKey]
     if (!nextAction || currentAction === nextAction) return
     // Function inspired by: https://github.com/mrdoob/three.js/blob/master/examples/webgl_animation_skinning_blending.html
-    console.log(nextAction)
     nextAction.enabled = true
     if (currentAction) {
       currentAction.crossFadeTo(nextAction, duration, true)
