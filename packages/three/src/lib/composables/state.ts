@@ -8,3 +8,5 @@ export const buttonOiTsuki = writable(false)
 export const buttonTetsui = writable(false)
 export const buttonAgeUke = writable(false)
 export const buttonShutoUke = writable(false)
+
+export const startButton = writable(false)

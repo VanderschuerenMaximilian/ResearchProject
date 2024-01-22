@@ -3,11 +3,14 @@
     import * as tf from "@tensorflow/tfjs";
     import * as posenet from "@tensorflow-models/posenet";
     import { poseKeypoints } from '$lib/composables/keypoints';
+    import { ChevronLeft } from 'lucide-svelte'
+    import { startButton } from '$lib/composables/state';
     
     let webCam: HTMLVideoElement
     let canvas: HTMLCanvasElement
     let net: posenet.PoseNet
     let base64: string
+    let showCamera: boolean = true
 
     onMount(async (): Promise<void> => {
         try {
@@ -18,11 +21,11 @@
             
             webCam.srcObject = stream
             webCam.play()
-            if (webCam !== undefined) sendWebcamData()
-            setInterval(() => {
-                // console.log('webCam', webCam)   
-                sendWebcamData()
-            }, 3000);
+            // if (webCam !== undefined) sendWebcamData()
+            // setInterval(() => {
+            //     // console.log('webCam', webCam)   
+            //     sendWebcamData()
+            // }, 3000);
         } catch (error) {
             console.error(error, 'Could not get media stream')
         }
@@ -36,7 +39,7 @@
     }
 
     async function detect() {
-        if (typeof webCam !== "undefined" && webCam !== null) {
+        if (typeof webCam !== "undefined" && webCam !== null && net !== undefined) {
             const pose = await net.estimateSinglePose(webCam, {
                 flipHorizontal: false
             });
@@ -121,15 +124,35 @@
         }).then(res => console.log(res))
     }
     
-    // runPosenet();
+    startButton.subscribe(value => {
+        if (value) runPosenet()
+        else if(!value && net) {
+            net.dispose()
+            tf.dispose()
+            net = undefined
+            canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height)
+        }
+    })
 </script>
 
-<div class="absolute overflow-hidden">
-    <div class="relative">
+<div class="absolute bottom-0 left-0">
+    {#if webCam?.srcObject}
+        <button
+        on:click={() => {showCamera = !showCamera}}
+        class={`z-50 top-1/2 -right-5 absolute bg-gray-800 hover:bg-gray-700 text-white py-1 rounded-lg transform transition-all duration-200 ${showCamera ? 'translate-x-0' : '-translate-x-[410px]'}
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800`}
+        >
+        <ChevronLeft size="36" 
+        style="transform: rotate({showCamera ? '180deg' : '0deg'}); transition: transform 200ms ease-in-out;"
+        />
+        </button>
+    {/if}
+    <div class="relative rounded-tr-xl opacity-50 overflow-hidden transition-all duration-200"
+    style:transform="translateX({showCamera ? '0' : '-100%'})"
+    >
         <video  bind:this={webCam} width="420" height="360">
             <track kind="captions" />
         </video>
-        <canvas class="absolute top-0 left-0" bind:this={canvas}></canvas>
+        <canvas class="absolute top-0 left-0 " bind:this={canvas}></canvas>
     </div>
-    <canvas id="canvas" class="hidden"></canvas>
 </div>
