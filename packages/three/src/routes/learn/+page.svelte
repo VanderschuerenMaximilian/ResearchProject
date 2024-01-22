@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { Pane, Button } from 'svelte-tweakpane-ui'
+  import { Pane, Button, Wheel } from 'svelte-tweakpane-ui'
   import { Canvas } from '@threlte/core'
   import Scene from '$lib/components/Scene.svelte'
   import { buttonIdle, buttonWalk, buttonRun ,buttonStance, buttonAgeUke, buttonOiTsuki, buttonGedanBarai, buttonTetsui, buttonShutoUke } from '$lib/composables/state'
+  import { volume } from '$lib/composables/audio'
 </script>
 
 <svelte:head>
@@ -68,6 +69,19 @@
       $buttonRun = !$buttonRun
     }}
   />
+</Pane>
+<Pane
+  title="Volume"
+  position="fixed"
+  x={5}
+>
+<Wheel
+  label="Volume"
+  bind:value={$volume}
+  min={0}
+  max={100}
+  step={10}
+/>
 </Pane>
 <div>
   <Canvas>

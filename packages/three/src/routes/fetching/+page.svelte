@@ -4,5 +4,6 @@
     $: techniqueId = "65a52d20b4ae0928e94e889f"
 </script>
 
-<p>Technique: {techniqueId}</p>
-<Technique props={techniqueId} />
+<div class="min-h-screen">
+    <Technique techniqueId={techniqueId} />
+</div>
