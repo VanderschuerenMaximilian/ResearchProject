@@ -1,12 +1,12 @@
 [
     {
         "name": "Oi tsuki",
-        "description": "Straight punch",
+        "description": "Oi tsuki is a basic punching technique taught by Karate styles such as Shotokan. It is also known in English as a lunge punch, step-in punch, front punch, forward punch, stepping punch, etc. You might also find this Karate technique spelled as Oizuki, Oi Zuki, etc.",
         "image": "http://budocentrumhetgroenehart.nl/sites/default/files/oitsuki.gif"
     },
     {
         "name": "Gedan barai",
-        "description": "Downward block",
+        "description": "Gedan barai, or downward block is one of the most commonly used karate techniques",
         "image": "http://budocentrumhetgroenehart.nl/sites/default/files/gedanbarai.gif"
     },
     {
@@ -16,12 +16,22 @@
     },
     {
         "name": "Age uke",
-        "description": "Rising block",
+        "description": "Age Uke (upper block, rising block) is one of the first blocks practiced in shotokan karate.",
         "image": "https://images2.imgbox.com/08/8e/N9TD7OMO_o.png"
     },
     {
         "name": "Shuto uke",
-        "description": "Knifehand block",
+        "description": "Shuto uke (knife hand block) is one of the more tricky techniques, especially when stepping in kokutsu dachi (shotokan back stance).",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXxeNzwCGOGK0hXmBaPIG_KP_cO1c7LE-4RSTS17Uf6xLfENH8dxrkiFqeDt5O_6S6v_8&usqp=CAU"
+    },
+    {
+        "name": "Bow",
+        "description": "The bow is a sign of respect and peace. Respect for the traditions, respect for the people you train with and it shows your peaceful intentions.",
+        "image": "https://i.pinimg.com/474x/b2/e6/a6/b2e6a61f1b2c05b1efb24535a3a8d038.jpg"
+    },
+    {
+        "name": "Stance",
+        "description": "The karateka neutral position at the beginning of kata is the same (but without swords) as the famous swordsman Musashi in a defensive 'Open on all eight sides' position (happo biraki) that allows no opening to attack from any direction.",
+        "image": "https://thumbs2.imgbox.com/0a/0e/kujCjUmA_t.jpg"
     }
 ]

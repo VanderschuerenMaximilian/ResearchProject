@@ -36,6 +36,7 @@ type Query {
   kata(id: Int!): Kata!
   katas: [Kata!]!
   technique(id: ID!): Technique!
+  techniqueByName(name: String!): Technique!
   techniques: [Technique!]!
 }
 
