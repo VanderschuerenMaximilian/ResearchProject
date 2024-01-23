@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Reasearch Project",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx lerna run --scope={api,three,cogniflow-server} dev:lerna",
+    "dev:api": "npx lerna run --scope=api dev:lerna",
+    "dev:three": "npx lerna run --scope=three dev:lerna",
+    "dev:ai": "npx lerna run --scope=cogniflow-server dev:lerna"
   },
   "keywords": [],
   "workspaces": [
@@ -27,5 +31,9 @@
     "url": "https://github.com/VanderschuerenMaximilian/ResearchProject/issues"
   },
   "author": "Maximilian Vanderschueren",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^7.4.1"
+  }
 }
