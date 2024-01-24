@@ -38,7 +38,7 @@
   <AudioListener />
 </T.PerspectiveCamera>
 
-<T.AxesHelper/>
+<T.AxesHelper />
 
 <T.DirectionalLight
   intensity={0.8}
@@ -51,6 +51,7 @@
   horizontalPlacement={'right'}
   paddingX={75}
   paddingY={25}
+  xColor={'#ff8a00'}
 />
 
 <ContactShadows
