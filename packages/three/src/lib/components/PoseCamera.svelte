@@ -141,12 +141,12 @@
         if (value) {
             tf.engine().startScope()
             runPosenet()
-            // intervalId = setInterval(() => {
-            //     sendWebcamData()
-            // }, 5000);
+            intervalId = setInterval(() => {
+                sendWebcamData()
+            }, 5000);
         }
         else if(!value && net) {
-            // clearInterval(intervalId)
+            clearInterval(intervalId)
             tf.dispose(net)
             net = undefined
             canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height)
@@ -177,5 +177,6 @@
         </video>
         <canvas class={`absolute top-0 left-0`} bind:this={canvas}></canvas>
     </div>
+    <!-- the screenshot of the webcam is saved here: -->
     <canvas id="canvas" class="hidden"></canvas>
 </div>

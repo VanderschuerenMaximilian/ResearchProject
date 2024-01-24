@@ -1,6 +1,6 @@
 <script lang="ts">
   import { T } from '@threlte/core'
-  import { ContactShadows, Float, Grid, OrbitControls, AudioListener } from '@threlte/extras'
+  import { ContactShadows, Float, Grid, OrbitControls, AudioListener, Gizmo } from '@threlte/extras'
   import Character from './Character.svelte'
   import Ethan from './Ethan.svelte'
   import Ethan2 from './Ethan2.svelte'
@@ -46,6 +46,12 @@
   position.y={10}
 />
 <T.AmbientLight intensity={0.2} />
+
+<Gizmo 
+  horizontalPlacement={'right'}
+  paddingX={75}
+  paddingY={25}
+/>
 
 <ContactShadows
   scale={10}

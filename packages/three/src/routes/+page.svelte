@@ -1,10 +1,5 @@
 <script lang="ts">
 import Header from "$lib/components/Header.svelte";
-import type { PageData } from "$houdini"
-export let data: PageData
-export let katas: any
-$: ({ Katas } = data)
-$: katas = $Katas.data.katas || []
 </script>
 
 <svelte:head>
@@ -12,7 +7,7 @@ $: katas = $Katas.data.katas || []
 	<meta name="description" content="The landingpage of Karate Learn" />
 </svelte:head>
 
-<div class='font-body w-screen h-screen bg-gray-50 dark:bg-slate-900 text-black dark:text-slate-50'>
+<div class='font-body w-screen h-screen bg-gray-50 dark:bg-slate-800 text-black dark:text-slate-50'>
   <Header />
   <div class="space-y-4 max-w-2xl ml-[10%] pt-44">
     <h1 class="font-title font-bold text-7xl max-w-64">Karate Learn</h1>
@@ -23,9 +18,4 @@ $: katas = $Katas.data.katas || []
       class="bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700 transform transition-colors duration-200 px-6 py-4 rounded-lg text-slate-50
       text-lg font-title shadow-lg">Learn now</a></div>
   </div>
-  {#if katas}
-    {#each katas as kata (kata.id)}
-        <p>{kata.name}</p>
-    {/each}
-  {/if}
 </div>

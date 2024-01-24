@@ -14,8 +14,7 @@
 <div class="w-screen h-screen">
     <ReturnHome />
     <Startbutton />
-    <!-- TODO: place the techniques the model things are being done with the confidence  -->
-    <Technique techniqueName={techniqueName} />
+    <Technique techniqueName={techniqueName} horizontalPos={'right-4'} verticalPos={'top-4'}/>
     <PoseCamera />
     <Canvas>
         <PoseScene />
