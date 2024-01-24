@@ -12,6 +12,7 @@
     let net: posenet.PoseNet
     let base64: string
     let showCamera: boolean = true
+    let intervalId: number
 
     onMount(async (): Promise<void> => {
         try {
@@ -22,18 +23,14 @@
             
             webCam.srcObject = stream
             webCam.play()
-            // if (webCam !== undefined) sendWebcamData()
-            setInterval(() => {
-                // console.log('webCam', webCam)   
-                sendWebcamData()
-            }, 3000);
         } catch (error) {
             console.error(error, 'Could not get media stream')
         }
     })
 
     async function runPosenet() {
-        // the better model but has some sort of memory leak
+        // explanation: the better model but has some sort of memory leak
+        // ---------------------------------------
         // net = await posenet.load({
         //     architecture: "ResNet50",
         //     outputStride: 16,
@@ -41,6 +38,7 @@
         //     multiplier: 1,
         //     quantBytes: 1
         // });
+
         net = await posenet.load({
             architecture: "MobileNetV1",
             outputStride: 16,
@@ -128,8 +126,7 @@
 
     async function sendWebcamData() {
         const data = await captureWebcam()
-        // console.log('webCam data: ',data)
-        const response = await fetch('https://fb77-2001-6a8-2480-6dba-d019-e62b-5dc1-5c3c.ngrok-free.app/webcam', {
+        const response = await fetch('https://81df-2001-6a8-2480-6dba-f1fb-5074-88a8-910c.ngrok-free.app/webcam', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -144,8 +141,12 @@
         if (value) {
             tf.engine().startScope()
             runPosenet()
+            // intervalId = setInterval(() => {
+            //     sendWebcamData()
+            // }, 5000);
         }
         else if(!value && net) {
+            // clearInterval(intervalId)
             tf.dispose(net)
             net = undefined
             canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height)

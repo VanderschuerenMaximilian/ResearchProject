@@ -32,14 +32,13 @@ app.post('/webcam', async (req, res) => {
 async function loadModel(base64Code) {
   try {
     const response = await fetch(
-      'https://predict.cogniflow.ai/image/object-detection/detect/47804ea1-9044-467d-89f0-f754a59f5371', //model 1
-      // 'https://predict.cogniflow.ai/image/object-detection/detect/6a60d7f8-057f-4847-b881-a2289ced144a', //model 2
+      'https://predict.cogniflow.ai/image/object-detection/detect/e70700f1-0ac7-4f16-ad63-9df15de31c90',
       {
         method: 'POST',
         headers: {
           accept: 'application/json',
           'Content-Type': 'application/json',
-          'x-api-key': '48cf32e3-0f46-4cd8-a7e1-5315d115eb4d',
+          'x-api-key': '70f17602-40eb-4fd3-9f90-30876e153581',
         },
         body: JSON.stringify({
           format: 'base64',

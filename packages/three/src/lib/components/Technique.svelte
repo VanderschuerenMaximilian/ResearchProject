@@ -21,6 +21,7 @@
 </script>
 
 <!-- {JSON.stringify($techniqueQuery.data?.technique)} -->
+{#if $techniqueQuery.data?.techniqueByName}
 <div class="flex flex-col items-center gap-2 absolute right-0 mr-4 mt-4 w-fit bg-gray-800 pt-2 pb-4 px-4 rounded-xl">
     <h5 class="text-slate-100 font-title text-xl">{$techniqueQuery.data?.techniqueByName?.name}</h5>
     <picture>
@@ -28,3 +29,4 @@
     </picture>
     <p class="min-w-52 max-w-64 text-center text-slate-400">{$techniqueQuery.data?.techniqueByName?.description}</p>
 </div>
+{/if}
