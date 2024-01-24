@@ -1,6 +1,6 @@
 <script lang="ts">
   import { T } from '@threlte/core'
-  import { ContactShadows, Float, Grid, OrbitControls } from '@threlte/extras'
+  import { ContactShadows, Float, Grid, OrbitControls, Gizmo } from '@threlte/extras'
   import PoseCharacter from './PoseCharacter.svelte';
   import * as three from 'three'
   import dojoImg from '$lib/images/dojo_skybox.png'
@@ -42,6 +42,13 @@
   blur={2}
   far={2.5}
   opacity={0.7}
+/>
+
+<Gizmo 
+  horizontalPlacement={'right'}
+  paddingX={75}
+  paddingY={25}
+  xColor={'#ff8a00'}
 />
 
 <PoseCharacter />
