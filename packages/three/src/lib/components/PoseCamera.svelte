@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from 'svelte'
+    import { onMount, onDestroy } from 'svelte'
     import * as tf from "@tensorflow/tfjs";
     import * as posenet from "@tensorflow-models/posenet";
     import { poseKeypoints } from '$lib/composables/keypoints';
@@ -27,6 +27,13 @@
             console.error(error, 'Could not get media stream')
         }
     })
+
+    onDestroy(() => {
+        if (webCam && webCam.srcObject) {
+        const tracks = webCam.srcObject.getTracks();
+        tracks.forEach(track => track.stop());
+        }
+    });
 
     async function runPosenet() {
         // explanation: the better model but has some sort of memory leak
