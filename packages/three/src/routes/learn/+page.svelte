@@ -76,8 +76,6 @@
     </button>
   {/each}
   {/if}
-    <button on:click={()=>{$buttonIdle = !$buttonIdle}}
-    >Idle</button>
     <button on:click={()=>{$buttonWalk = !$buttonWalk}}
     >Walk</button>
     <button on:click={()=>{$buttonRun = !$buttonRun}}
