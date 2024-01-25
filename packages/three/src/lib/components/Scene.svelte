@@ -6,6 +6,12 @@
   import Ethan2 from './Ethan2.svelte'
   import * as three from 'three'
   import dojoImg from '$lib/images/dojo_skybox.png'
+  import AgeUke from './Age_uke.svelte'
+  import GedanBarai from './Gedan_barai.svelte'
+  import OiTsuki from './Oi_tsuki.svelte'
+  import ShutoUke from './Shuto_uke.svelte'
+  import Stance from './Stance.svelte'
+  import Tetsui from './Tetsui.svelte'
 
   const loader = new three.TextureLoader()
   const dojo = loader.load(dojoImg)
@@ -16,13 +22,13 @@
 
 <T.PerspectiveCamera
   makeDefault
-  position={[-10, 10, 10]}
-  fov={15}
+  position={[-15, 10, 10]}
+  fov={22}
 >
-  <OrbitControls
+<OrbitControls
     enableZoom={true}
-    maxDistance={20}
     minDistance={5}
+    maxDistance={25}
     enableDamping
     dampingFactor={0.1}
     target.y={0.9}
@@ -60,11 +66,16 @@
   far={2.5}
   opacity={0.7}
 />
-<Character />
-<!-- <Ethan /> -->
-<!-- <Ethan2 />   -->
+<Stance />
+<!-- <AgeUke /> -->
+<!-- <GedanBarai /> -->
+<!-- <OiTsuki /> -->
+<!-- <ShutoUke /> -->
+<!-- <Tetsui /> -->
+<!-- <Character /> -->
+<!-- <svelte:component this={Stance} /> -->
 
-<T.Mesh geometry={skybox} material={new three.MeshBasicMaterial({ map: dojo })} />
+<T.Mesh geometry={skybox} material={new three.MeshBasicMaterial({ map: dojo })} position.y={3}/>
 
 <T.Mesh rotation.x={-90 * (Math.PI / 180)}>
   <T.CircleGeometry args={[72, 72]} />

@@ -9,20 +9,17 @@
   $: volumePercentage = $volume / 50
   let currentActionKey = 'idle'
   const { gltf, actions } = useGltfAnimations()
-  $: $actions[currentActionKey]?.play()
+  $: if (actions) actions[currentActionKey]?.play(), console.log($actions)
   const unsub1 = buttonIdle.subscribe(() => {
-    console.log('transition to idle')
     transitionTo('idle', 0.3)
   })
   const unsub2 = buttonWalk.subscribe(() => {
-    console.log('transition to run')
       transitionTo('walk', 0.3)
       setTimeout(() => {
         transitionTo('idle', 0.3)
       }, 1500);
   })
   const unsub3 = buttonRun.subscribe(() => {
-    console.log('transition to run')
     transitionTo('run', 0.3)
     setTimeout(() => {
       transitionTo('idle', 0.3)
