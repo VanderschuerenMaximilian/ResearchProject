@@ -1,11 +1,9 @@
 <script lang="ts">
   import { T } from '@threlte/core'
   import { ContactShadows, Float, Grid, OrbitControls, AudioListener, Gizmo } from '@threlte/extras'
-  import Character from './Character.svelte'
-  import Ethan from './Ethan.svelte'
-  import Ethan2 from './Ethan2.svelte'
   import * as three from 'three'
   import dojoImg from '$lib/images/dojo_skybox.png'
+  import Character from './Character.svelte'
   import AgeUke from './Age_uke.svelte'
   import GedanBarai from './Gedan_barai.svelte'
   import OiTsuki from './Oi_tsuki.svelte'
