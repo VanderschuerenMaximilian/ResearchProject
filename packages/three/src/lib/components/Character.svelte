@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onDestroy } from 'svelte'
-  import { T } from '@threlte/core'
   import { GLTF, useGltfAnimations, PositionalAudio } from '@threlte/extras'
   import { buttonIdle, buttonWalk, buttonRun } from '../composables/state'
   import { volume } from '../composables/audio'
@@ -9,7 +8,6 @@
   $: volumePercentage = $volume / 50
   let currentActionKey = 'idle'
   const { gltf, actions } = useGltfAnimations()
-  $: if (actions) actions[currentActionKey]?.play(), console.log($actions)
   const unsub1 = buttonIdle.subscribe(() => {
     transitionTo('idle', 0.3)
   })

@@ -9,10 +9,10 @@
     
     let webCam: HTMLVideoElement
     let canvas: HTMLCanvasElement
-    let net: posenet.PoseNet
+    let net: posenet.PoseNet | undefined
     let base64: string
     let showCamera: boolean = true
-    let intervalId: number
+    let intervalId: any
 
     onMount(async (): Promise<void> => {
         try {
@@ -31,7 +31,7 @@
     onDestroy(() => {
         if (webCam && webCam.srcObject) {
         const tracks = webCam.srcObject.getTracks();
-        tracks.forEach(track => track.stop());
+        tracks.forEach((track: any) => track.stop());
         }
     });
 
@@ -154,7 +154,6 @@
         }
         else if(!value && net) {
             clearInterval(intervalId)
-            tf.dispose(net)
             net = undefined
             canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height)
             tf.disposeVariables()

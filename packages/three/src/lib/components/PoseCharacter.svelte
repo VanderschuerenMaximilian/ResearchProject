@@ -2,7 +2,7 @@
   import { Group } from 'three'
   import { T, forwardEventHandlers } from '@threlte/core'
   import { useGltf, useGltfAnimations } from '@threlte/extras'
-    import { poseKeypoints } from '$lib/composables/keypoints'
+  import { poseKeypoints } from '$lib/composables/keypoints'
   import { onMount } from 'svelte'
   export const ref = new Group()
   const confidence = 0.8

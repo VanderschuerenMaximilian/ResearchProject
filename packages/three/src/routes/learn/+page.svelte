@@ -3,16 +3,17 @@
   import Scene from '$lib/components/Scene.svelte'
   import ReturnHome from '$lib/components/ReturnHome.svelte'
   import Technique from '$lib/components/Technique.svelte'
-  import { buttonIdle, buttonWalk, buttonRun ,buttonStance, buttonAgeUke, buttonOiTsuki, buttonGedanBarai, buttonTetsui, buttonShutoUke } from '$lib/composables/state'
+  import { techniqueButton, buttonWalk, buttonRun } from '$lib/composables/state'
   import { volume, muted } from '$lib/composables/audio'
   import { Volume1, Volume2, VolumeX, ChevronUp } from 'lucide-svelte'
   import type { PageData } from '$houdini'
   export let data: PageData
   $: ({ getTechniques } = data)
-  $: techniques = $getTechniques.data.techniques
+  $: techniques = $getTechniques?.data?.techniques
   $: $volume? handleVolume() : null
   let techniqueName: string
   let collapsed = false
+
   function handleMute() {
     if (!$muted) {
       $muted = true
@@ -70,22 +71,25 @@
   {#each techniques as technique, index}
     <button class={`${index%2 === 0?'bg-gray-900 hover:bg-gray-800':'bg-gray-700 hover:bg-gray-800'} 
     transform transition-colors duration-200 py-1 px-20 rounded-md`}
-    on:click={()=>{techniqueName = technique.name}}
+    on:click={()=>{
+      techniqueName = technique.name
+      $techniqueButton = !$techniqueButton
+      }}
     >
       <h5 class="text-base">{technique.name}</h5>
     </button>
   {/each}
   {/if}
-    <button on:click={()=>{$buttonWalk = !$buttonWalk}}
+    <!-- <button on:click={()=>{$buttonWalk = !$buttonWalk}}
     >Walk</button>
     <button on:click={()=>{$buttonRun = !$buttonRun}}
-    >Run</button>
+    >Run</button> -->
   </div>
 </div>
 <Technique techniqueName={techniqueName} horizontalPos={'left-4'} verticalPos={'bottom-4'} />
 <div class="canvas w-screen h-screen">
   <Canvas>
-    <Scene />
+    <Scene techniqueName={techniqueName}/>
   </Canvas>
 </div>
 <style>

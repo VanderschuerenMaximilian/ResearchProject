@@ -1,16 +1,18 @@
-<script>
+<script lang="ts">
   import { Group } from 'three'
   import { T, forwardEventHandlers } from '@threlte/core'
   import { useGltf, useGltfAnimations } from '@threlte/extras'
+  import * as three from 'three'
 
   export const ref = new Group()
 
-  const gltf = useGltf('Stance-transformed.glb', { useDraco: true })
+  const gltf = useGltf('Age_uke-transformed.glb', { useDraco: true })
   export const { actions, mixer } = useGltfAnimations(gltf, ref)
 
   const component = forwardEventHandlers()
 
-  $actions['recorded_clip']?.play()
+  $: if(actions) $actions['recorded_clip']?.setLoop(three.LoopOnce, 1), $actions['recorded_clip']?.play()
+
 </script>
 
 <T is={ref} dispose={false} {...$$restProps} bind:this={$component}>
@@ -18,7 +20,7 @@
     <slot name="fallback" />
   {:then gltf}
     <T.Group>
-      <T.Group name="Ethan__1_1" position={[0, 1.28, 0]} scale={0.016}>
+      <T.Group name="Ethan__1_1" position={[0, 1.35, 0]} scale={0.016}>
         <T.Group name="EthanBody2">
           <T.SkinnedMesh
             name="mesh_0"
