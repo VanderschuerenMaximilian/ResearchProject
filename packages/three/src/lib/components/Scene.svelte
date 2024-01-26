@@ -5,7 +5,7 @@
   import * as three from 'three'
   import dojoImg from '$lib/images/dojo_skybox.png'
   import { techniqueButton } from '$lib/composables/state'
-  import Character from './Character.svelte'
+  // import Character from './Character.svelte'
   import { volume } from '../composables/audio'
   let startAudio = false
   let volumePercentage = 0

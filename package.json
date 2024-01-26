@@ -7,7 +7,8 @@
     "dev": "npx lerna run --scope={api,three,cogniflow-server} dev:lerna",
     "dev:api": "npx lerna run --scope=api dev:lerna",
     "dev:three": "npx lerna run --scope=three dev:lerna",
-    "dev:ai": "npx lerna run --scope=cogniflow-server dev:lerna"
+    "dev:ai": "npx lerna run --scope=cogniflow-server dev:lerna",
+    "seed": "npx lerna run --scope=api seed"
   },
   "keywords": [],
   "workspaces": [
