@@ -1,2 +1,2 @@
 import { writable, type Writable } from 'svelte/store'
-export const techniqueRecognition = writable() as Writable<Object>
+export const techniqueRecognition = writable() as Writable<any>
