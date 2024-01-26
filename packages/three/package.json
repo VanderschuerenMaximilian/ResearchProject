@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
+    "dev:lerna": "npm run dev -- --open",
     "build": "vite build",
     "preview": "vite preview",
     "test": "playwright test",
@@ -35,7 +36,6 @@
   "dependencies": {
     "@tensorflow-models/posenet": "^2.2.2",
     "@tensorflow/tfjs": "^4.15.0",
-    "lucide-svelte": "^0.308.0",
-    "svelte-tweakpane-ui": "^1.1.4"
+    "lucide-svelte": "^0.308.0"
   }
 }

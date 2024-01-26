@@ -1,13 +1,18 @@
 <script lang="ts">
-    import { onMount } from 'svelte'
+    import { onMount, onDestroy } from 'svelte'
     import * as tf from "@tensorflow/tfjs";
     import * as posenet from "@tensorflow-models/posenet";
     import { poseKeypoints } from '$lib/composables/keypoints';
+    import { ChevronLeft } from 'lucide-svelte'
+    import { startButton } from '$lib/composables/state';
+    import { techniqueRecognition } from '$lib/composables/recognition';
     
     let webCam: HTMLVideoElement
     let canvas: HTMLCanvasElement
-    let net: posenet.PoseNet
+    let net: posenet.PoseNet | undefined
     let base64: string
+    let showCamera: boolean = true
+    let intervalId: any
 
     onMount(async (): Promise<void> => {
         try {
@@ -18,29 +23,46 @@
             
             webCam.srcObject = stream
             webCam.play()
-            if (webCam !== undefined) sendWebcamData()
-            setInterval(() => {
-                // console.log('webCam', webCam)   
-                sendWebcamData()
-            }, 3000);
         } catch (error) {
             console.error(error, 'Could not get media stream')
         }
     })
 
+    onDestroy(() => {
+        if (webCam && webCam.srcObject) {
+        const tracks = webCam.srcObject.getTracks();
+        tracks.forEach((track: any) => track.stop());
+        }
+    });
+
     async function runPosenet() {
-        net = await posenet.load();
+        // explanation: the better model but has some sort of memory leak
+        // ---------------------------------------
+        // net = await posenet.load({
+        //     architecture: "ResNet50",
+        //     outputStride: 16,
+        //     inputResolution: { width: 300, height: 257 },
+        //     multiplier: 1,
+        //     quantBytes: 1
+        // });
+
+        net = await posenet.load({
+            architecture: "MobileNetV1",
+            outputStride: 16,
+            inputResolution: { width: 360, height: 360 },
+            multiplier: 0.75,
+        });
         setInterval(() => {
             detect();
-        }, 50);
+        }, 100);
     }
 
     async function detect() {
-        if (typeof webCam !== "undefined" && webCam !== null) {
+        if (typeof webCam !== "undefined" && webCam !== null && net !== undefined) {
             const pose = await net.estimateSinglePose(webCam, {
                 flipHorizontal: false
             });
-            canvas.width = 420;
+            canvas.width = 360;
             canvas.height = 360;
 
             drawPose(pose, canvas.getContext("2d"));
@@ -111,25 +133,56 @@
 
     async function sendWebcamData() {
         const data = await captureWebcam()
-        // console.log('webCam data: ',data)
-        fetch('https://ec52-2a02-a03f-e1a1-b901-fc89-403c-d161-1a31.ngrok-free.app/webcam', {
+        const response = await fetch('https://81df-2001-6a8-2480-6dba-f1fb-5074-88a8-910c.ngrok-free.app/webcam', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({data}),
-        }).then(res => console.log(res))
+        })
+
+        $techniqueRecognition = await response.json()
     }
     
-    // runPosenet();
+    startButton.subscribe(async (value) => {
+        if (value) {
+            tf.engine().startScope()
+            runPosenet()
+            intervalId = setInterval(() => {
+                sendWebcamData()
+            }, 5000);
+        }
+        else if(!value && net) {
+            clearInterval(intervalId)
+            net = undefined
+            canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height)
+            tf.disposeVariables()
+            tf.engine().endScope()
+            tf.engine().reset()
+        }
+    })
 </script>
 
-<div class="absolute overflow-hidden">
-    <div class="relative">
-        <video  bind:this={webCam} width="420" height="360">
+<div class="absolute bottom-0 left-0">
+    {#if webCam?.srcObject}
+        <button
+        on:click={() => {showCamera = !showCamera}}
+        class={`z-50 top-1/2 -right-5 absolute bg-gray-800 hover:bg-gray-700 text-white py-1 rounded-lg transform transition-all duration-200 ${showCamera ? 'translate-x-0' : '-translate-x-[350px]'}
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800`}
+        >
+        <ChevronLeft size="36" 
+        style="transform: rotate({showCamera ? '180deg' : '0deg'}); transition: transform 200ms ease-in-out;"
+        />
+        </button>
+    {/if}
+    <div class="relative rounded-tr-xl opacity-50 overflow-hidden transition-all duration-200"
+    style:transform="translateX({showCamera ? '0' : '-100%'})"
+    >
+        <video  bind:this={webCam} width="360" height="360">
             <track kind="captions" />
         </video>
-        <canvas class="absolute top-0 left-0" bind:this={canvas}></canvas>
+        <canvas class={`absolute top-0 left-0`} bind:this={canvas}></canvas>
     </div>
+    <!-- the screenshot of the webcam is saved here: -->
     <canvas id="canvas" class="hidden"></canvas>
 </div>

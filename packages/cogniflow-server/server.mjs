@@ -1,14 +1,13 @@
 import express from 'express'
 import cors from 'cors'
 import fs from 'fs'
+import dotenv from 'dotenv'
 
 const app = express()
 const port = 3100
 app.use(cors())
 app.use(express.raw({ type: '*/*', limit: '10mb' }))
-
-let counter = 0
-let webcamImage
+dotenv.config()
 
 app.get('/', (req, res) => {
   res.send('Welcome to my server!')
@@ -19,26 +18,20 @@ app.post('/webcam', async (req, res) => {
   const response = await loadModel(base64Image)
   console.log('cogniflow response', response)
   const buffer = Buffer.from(base64Image, 'base64')
-  if (counter < 10) {
-    // counter++
-    // fs.writeFileSync(`webcam${counter}.jpg`, buffer)
-    fs.writeFileSync(`webcam.jpg`, buffer)
-  } 
-  webcamImage = buffer
-  // console.log(webcamImage)
+  fs.writeFileSync(`webcam.jpg`, buffer)
   res.status(200).send({'technique': response})
 })
 
 async function loadModel(base64Code) {
   try {
     const response = await fetch(
-      'https://predict.cogniflow.ai/image/object-detection/detect/6a60d7f8-057f-4847-b881-a2289ced144a',
+      'https://predict.cogniflow.ai/image/object-detection/detect/e70700f1-0ac7-4f16-ad63-9df15de31c90',
       {
         method: 'POST',
         headers: {
           accept: 'application/json',
           'Content-Type': 'application/json',
-          'x-api-key': '48cf32e3-0f46-4cd8-a7e1-5315d115eb4d',
+          'x-api-key': process.env.COGNIFLOW_API_KEY,
         },
         body: JSON.stringify({
           format: 'base64',

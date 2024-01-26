@@ -23,6 +23,11 @@ export class TechniquesResolver {
     return this.techniquesService.findOne(id);
   }
 
+  @Query(() => Technique, { name: 'techniqueByName' })
+  findByName(@Args('name', { type: () => String }) name: string) {
+    return this.techniquesService.findByName(name);
+  }
+
   @Mutation(() => Technique)
   updateTechnique(@Args('updateTechniqueInput') updateTechniqueInput: UpdateTechniqueInput) {
     return this.techniquesService.update(updateTechniqueInput.id, updateTechniqueInput);

@@ -2,7 +2,7 @@
   import { Group } from 'three'
   import { T, forwardEventHandlers } from '@threlte/core'
   import { useGltf, useGltfAnimations } from '@threlte/extras'
-    import { poseKeypoints } from '$lib/composables/keypoints'
+  import { poseKeypoints } from '$lib/composables/keypoints'
   import { onMount } from 'svelte'
   export const ref = new Group()
   const confidence = 0.8
@@ -10,13 +10,13 @@
   const component = forwardEventHandlers()
   let Xbot:any
 
-    $: coordinatesCalc($poseKeypoints)
-
-    onMount(async () => {
-        Xbot = await gltf
-        console.log('gltf', Xbot.nodes.Beta_Surface.skeleton)
-    })
-
+  
+  onMount(async () => {
+    Xbot = await gltf
+    // console.log('gltf', Xbot.nodes.Beta_Surface.skeleton)
+  })
+  
+  $: coordinatesCalc($poseKeypoints)
     // setInterval(() => {
     //   // console.log(-(($poseKeypoints[9].position.x - $poseKeypoints[5].position.x) / ($poseKeypoints[10].position.x - $poseKeypoints[6].position.x)))
     //   // console.log('right shoulder', $poseKeypoints[6].position)
@@ -26,18 +26,19 @@
     // }, 1000);
     
     async function coordinatesCalc(keypoints:any) {
-        // console.log('keypoints', $poseKeypoints) 
-        // console.log(Xbot.nodes.Beta_Surface.skeleton)
+      // console.log('keypoints', $poseKeypoints) 
+      // console.log(Xbot.nodes.Beta_Surface.skeleton)
+      if (Xbot?.nodes) {
 
         // Head
         Xbot.nodes.Beta_Surface.skeleton.bones[5].rotation.y = getYRotation(keypoints[1],keypoints[2],keypoints[0])
         Xbot.nodes.Beta_Surface.skeleton.bones[5].rotation.z = getZRotation(keypoints[1],keypoints[2])
-
-        
+          
+          
         // Spine Movement
         // Xbot.nodes.Beta_Surface.skeleton.bones[1].rotation.z = getXRotationSpine({1: keypoints[9], 2: keypoints[5], 3: keypoints[10], 4: keypoints[6]})
         Xbot.nodes.Beta_Surface.skeleton.bones[1].rotation.y = getYRotationSpine({1: keypoints[5], 2: keypoints[6], 3: keypoints[0]})
-
+          
         // Left Forarm Movement
         if(Math.abs(Xbot.nodes.Beta_Surface.skeleton.bones[10].rotation.y) < 0.8) {
           Xbot.nodes.Beta_Surface.skeleton.bones[11].rotation.y = getAngle(keypoints[5],keypoints[7],0,0,-1)
@@ -48,11 +49,11 @@
           Xbot.nodes.Beta_Surface.skeleton.bones[11].rotation.z = getAngle(keypoints[7],keypoints[9],0,0,1)
           Xbot.nodes.Beta_Surface.skeleton.bones[12].rotation.x = -10
         }
-
+          
         // // Left Arm Movement
         Xbot.nodes.Beta_Surface.skeleton.bones[10].rotation.y = getAngle(keypoints[5],keypoints[7],0,0,-1)
         Xbot.nodes.Beta_Surface.skeleton.bones[10].rotation.z = getAngle(keypoints[5],keypoints[7],0,0,-1)
-    
+          
         // TODO: right arm needs alot of finetuning
         // Right Forarm Movement
         if(Xbot.nodes.Beta_Surface.skeleton.bones[34].rotation.y > -2 && Xbot.nodes.Beta_Surface.skeleton.bones[34].rotation.y < 0.5 ) {
@@ -62,12 +63,13 @@
           Xbot.nodes.Beta_Surface.skeleton.bones[35].rotation.y = getAngle(keypoints[6],keypoints[8],0,0,-1)
           Xbot.nodes.Beta_Surface.skeleton.bones[35].rotation.z = getAngle(keypoints[8],keypoints[10],0,0,-1)
         }
-
+          
         // Right Arm Movement
         Xbot.nodes.Beta_Surface.skeleton.bones[34].rotation.y = getAngle(keypoints[6],keypoints[8],0,0,-1)
         Xbot.nodes.Beta_Surface.skeleton.bones[34].rotation.z = getAngle(keypoints[6],keypoints[8],0,0,1)
+      }
     }
-
+        
     function normalize (min:any, max:any, value:any) {
         return (value - min) / (max - min)* Math.PI
     }

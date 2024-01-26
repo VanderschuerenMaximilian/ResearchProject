@@ -30,6 +30,12 @@ export class TechniquesService {
     return this.techniquesRepository.findOne({ _id: new ObjectId(id) });
   }
 
+  @Get(':name')
+  findByName(@Param('name') name: string): Promise<Technique> {
+    const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1);
+    return this.techniquesRepository.findOne({ where: { name: nameCapitalized } });
+  }
+
   update(id: number, updateTechniqueInput: UpdateTechniqueInput) {
     return `This action updates a #${id} technique`;
   }
@@ -47,4 +53,5 @@ export class TechniquesService {
   clearTechniques(): Promise<void> {
     return this.techniquesRepository.clear();
   }
+
 }
