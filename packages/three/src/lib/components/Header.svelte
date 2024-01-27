@@ -33,7 +33,7 @@
         <button 
             on:click={toggleDarkMode}
             title="Darkmode toggle"
-            class="w-16 h-8 rounded-full p-1 bg-gray-200 dark:bg-gray-400 relative transition-colors duration-500 ease-in focus:outline-none focus:ring-2 focus:ring-red-700 dark:focus:ring-red-600 focus:border-transparent">
+            class="w-16 h-8 rounded-full p-1 bg-gray-200 dark:bg-gray-300 relative transition-colors duration-500 ease-in focus:outline-none focus:ring-2 focus:ring-red-700 dark:focus:ring-red-600 focus:border-transparent">
             <div class="relative 
             ml-0
             mr-8 
