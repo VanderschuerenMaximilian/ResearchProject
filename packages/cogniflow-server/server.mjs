@@ -25,13 +25,13 @@ app.post('/webcam', async (req, res) => {
 async function loadModel(base64Code) {
   try {
     const response = await fetch(
-      'https://predict.cogniflow.ai/image/object-detection/detect/e70700f1-0ac7-4f16-ad63-9df15de31c90',
+      'https://predict.cogniflow.ai/image/object-detection/detect/4dff4702-09f6-41e6-8c20-83f24ac39f3b',
       {
         method: 'POST',
         headers: {
           accept: 'application/json',
           'Content-Type': 'application/json',
-          'x-api-key': process.env.COGNIFLOW_API_KEY,
+          'x-api-key': 'f3e50704-3401-400d-a394-654f8c743cc0',
         },
         body: JSON.stringify({
           format: 'base64',

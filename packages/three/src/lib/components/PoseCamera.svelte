@@ -6,7 +6,8 @@
     import { ChevronLeft } from 'lucide-svelte'
     import { startButton } from '$lib/composables/state';
     import { techniqueRecognition } from '$lib/composables/recognition';
-    
+    import { cogniflowServer } from '$lib/composables/config';    
+
     let webCam: HTMLVideoElement
     let canvas: HTMLCanvasElement
     let net: posenet.PoseNet | undefined
@@ -30,6 +31,7 @@
 
     onDestroy(() => {
         if (webCam && webCam.srcObject) {
+        // @ts-ignore
         const tracks = webCam.srcObject.getTracks();
         tracks.forEach((track: any) => track.stop());
         }
@@ -133,7 +135,7 @@
 
     async function sendWebcamData() {
         const data = await captureWebcam()
-        const response = await fetch('https://81df-2001-6a8-2480-6dba-f1fb-5074-88a8-910c.ngrok-free.app/webcam', {
+        const response = await fetch(`${$cogniflowServer}/webcam`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

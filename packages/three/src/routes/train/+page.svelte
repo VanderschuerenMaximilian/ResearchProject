@@ -7,7 +7,6 @@
     import { Canvas } from '@threlte/core'
     import { techniqueRecognition } from '$lib/composables/recognition'
 
-    $: console.log('techniqueRecognition: ',$techniqueRecognition?.technique?.result[0].category,' ', $techniqueRecognition?.technique?.confidence_score)
     $: techniqueName = $techniqueRecognition?.technique?.confidence_score > 0.30? $techniqueRecognition.technique.result[0].category : ''
 </script>
 
